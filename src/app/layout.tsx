@@ -26,14 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" >
+      {/* suppressHydrationWarning */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen pt-18`}
       >
-        <Providers>
-          <Navbar />
-          {children}
-        </Providers>
+          <Providers>
+            {/* <div className="bg-yellow-200 dark:bg-green-900 p-4">Test Dark Mode</div> */}
+            <Navbar />
+            {children}
+          </Providers>
       </body>
     </html>
   );

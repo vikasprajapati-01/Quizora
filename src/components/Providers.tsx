@@ -9,11 +9,11 @@ type Props = {
 
 const Providers = ({ children }: Props) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    // <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <SessionProvider>
         {children}
       </SessionProvider>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 
