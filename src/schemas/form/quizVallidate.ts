@@ -12,3 +12,12 @@ export const quizCreationSchema = z.object({
   type: z.enum(["mcq", "open_ended"]),
   amount: z.number().min(1).max(25),
 });
+
+export const checkAnswerSchema = z.object({
+  userInput: z.string(),
+  questionId: z.string(),
+});
+
+export const endGameSchema = z.object({
+  gameId: z.string(),
+});

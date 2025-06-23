@@ -8,14 +8,14 @@ import { getAuthSession } from "@/lib/next-auth";
 export const POST = async (req: Request, res: Response) => {
     try {
         const session = await getAuthSession();
-        if (!session?.user) {
-        return NextResponse.json(
-                { error: "You must be logged in to create a game." },
-                {
-                status: 401,
-                }
-            );
-        }
+        // if (!session?.user) {
+        // return NextResponse.json(
+        //         { error: "You must be logged in to create a game." },
+        //         {
+        //         status: 401,
+        //         }
+        //     );
+        // }
 
         const body = await req.json();
         const {topic, amount, type} = quizCreationSchema.parse(body);

@@ -10,6 +10,8 @@ html.dark {
   --foreground: #ededed;
 }
 
+/* #ff7f01 */
+
 body {
   background: var(--background);
   color: var(--foreground);
