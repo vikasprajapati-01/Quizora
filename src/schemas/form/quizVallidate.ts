@@ -6,7 +6,7 @@ export const quizCreationSchema = z.object({
     .min(3, {
       message: "Topic must be at least 3 characters long",
     })
-    .max(50, {
+    .max(255, {
       message: "Topic must be at most 50 characters long",
     }),
   type: z.enum(["mcq", "open_ended"]),
