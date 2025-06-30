@@ -34,7 +34,7 @@ const MCQPage = async ({params: {gameId}} : Props) => {
         },
     });
 
-    if (!game || game.gameType !== "mcq") {
+    if (!game || game.gameType !== 'mcq') {
         return redirect("/quiz");
     }
 
