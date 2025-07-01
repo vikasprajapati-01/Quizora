@@ -7,12 +7,15 @@ import React from "react";
 import OpenEnded from "@/components/OpenEnded";
 
 type Props = {
-  params: {
+  params: Promise<{
     gameId: string;
-  };
+  }>;
 };
 
-const OpenEndedPage = async ({ params: { gameId } }: Props) => {
+const OpenEndedPage = async ({ params }: Props) => {
+  // Await the params before using them
+  const { gameId } = await params;
+  
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");
@@ -32,9 +35,11 @@ const OpenEndedPage = async ({ params: { gameId } }: Props) => {
       },
     },
   });
+  
   if (!game || game.gameType !== 'open_ended') {
     return redirect("/quiz");
   }
+  
   return <OpenEnded game={game} />;
 };
 
