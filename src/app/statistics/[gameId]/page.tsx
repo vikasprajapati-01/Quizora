@@ -65,17 +65,16 @@ const Statistics = async ({ params: { gameId } }: Props) => {
       <div className="grid gap-4 mt-4 md:grid-cols-3">
         <ResultCard accuracy={accuracy} />
         <AccuracyCard accuracy={accuracy} />
-        {/* <TimeCard
+        <TimeCard
           timeEnded={new Date(game.timeEnded ?? 0)}
           timeStarted={new Date(game.timeStarted ?? 0)}
-          icon={<FaTachometerAlt className="text-[#ff7f01]" />}
-        /> */}
+        />
       </div>
       
       <div className="mt-8 bg-[#0a0a0a] rounded-lg border border-gray-700 p-6">
         <h3 className="text-xl font-bold mb-4 text-[#ff7f01]">Questions Summary</h3>
-        {/* <QuestionsCard questions={game.questions} /> */}
-        <div className="text-gray-400">Questions data will appear here</div>
+        <QuestionsCard questions={game.questions} />
+        {/* <div className="text-gray-400">Questions data will appear here</div> */}
       </div>
     </div>
   );
