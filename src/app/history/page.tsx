@@ -1,0 +1,39 @@
+import HistoryComp from "@/components/History/HistoryComp";
+import { getAuthSession } from "@/lib/next-auth";
+import { redirect } from "next/navigation";
+import React from "react";
+import Link from "next/link";
+import { FaThLarge } from "react-icons/fa";
+
+type Props = {};
+
+const History = async (props: Props) => {
+  const session = await getAuthSession();
+  if (!session?.user) {
+    return redirect("/");
+  }
+  return (
+    <div className="min-h-screen p-8 bg-[#0a0a0a]">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-3xl font-bold text-white">Quiz History</h1>
+          <Link 
+            href="/dashboard"
+            className="inline-flex items-center px-5 py-2.5 rounded bg-[#ff7f01] hover:bg-[#e67200] text-white font-medium transition-colors text-lg"
+          >
+            <FaThLarge className="mr-2 w-5 h-5" />
+            Back to Dashboard
+          </Link>
+        </div>
+        
+        <div className="bg-[#171717] rounded-lg border border-gray-800 p-6">
+          <div className="max-h-[70vh] overflow-y-auto pr-2">
+            <HistoryComp limit={100} userId={session.user.id} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default History;
