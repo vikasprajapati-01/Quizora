@@ -2,7 +2,6 @@ import React from "react";
 
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/next-auth";
-import { title } from "process";
 import QuizCard from "./QuizCard/QuizCard";
 import HistoryCard from "./HistoryCard/HistoryCard";
 import FamousTopics from "./FamousTopics/FamousTopics";
