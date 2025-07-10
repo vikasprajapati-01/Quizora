@@ -7,7 +7,7 @@ import { getAuthSession } from "@/lib/next-auth"
 import { quizCreationSchema } from "@/schemas/form/quizVallidate";
 import { prisma } from "@/lib/database";
 
-export const POST = async (req: Request, res: Response) => {
+export const POST = async (req: Request) => {
     try {
         const session = await getAuthSession();
         if(!session?.user) {
