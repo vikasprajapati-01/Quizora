@@ -5,9 +5,9 @@ import React from "react";
 import Link from "next/link";
 import { FaThLarge } from "react-icons/fa";
 
-type Props = {};
+// type Props = {};
 
-const History = async (props: Props) => {
+const History = async () => {
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");

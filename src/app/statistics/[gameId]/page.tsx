@@ -3,7 +3,7 @@ import { prisma } from "@/lib/database";
 import { getAuthSession } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { FaThLarge, FaTachometerAlt } from "react-icons/fa";
+import { FaThLarge } from "react-icons/fa";
 import ResultCard from "@/components/statistics/ResultCard";
 import AccuracyCard from "@/components/statistics/AccuracyCard";
 import TimeCard from "@/components/statistics/TimeCard";
@@ -32,7 +32,7 @@ const Statistics = async ({ params: { gameId } }: Props) => {
   let accuracy: number = 0;
 
   if (game.gameType === "mcq") {
-    let totalCorrect = game.questions.reduce((acc, question) => {
+    const totalCorrect = game.questions.reduce((acc, question) => {
       if (question.isCorrect) {
         return acc + 1;
       }
@@ -40,7 +40,7 @@ const Statistics = async ({ params: { gameId } }: Props) => {
     }, 0);
     accuracy = (totalCorrect / game.questions.length) * 100;
   } else if (game.gameType === "open_ended") {
-    let totalPercentage = game.questions.reduce((acc, question) => {
+    const totalPercentage = game.questions.reduce((acc, question) => {
       return acc + (question.percentageCorrect ?? 0);
     }, 0);
     accuracy = totalPercentage / game.questions.length;

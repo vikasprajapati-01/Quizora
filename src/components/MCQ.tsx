@@ -5,7 +5,7 @@ import React from "react";
 import { Game, Question } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
-import { FaChartBar, FaChevronRight, FaClock, FaCheckCircle, FaTimesCircle, FaSpinner, FaTrophy } from "react-icons/fa";
+import { FaChartBar, FaChevronRight, FaClock, FaSpinner, FaTrophy } from "react-icons/fa";
 import { checkAnswerSchema, endGameSchema } from "@/schemas/form/quizVallidate";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";

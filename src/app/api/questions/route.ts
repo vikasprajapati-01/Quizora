@@ -3,7 +3,7 @@ import { ZodError } from "zod";
 
 import { quizCreationSchema } from "@/schemas/form/quizVallidate";
 import { gemini_output } from "@/lib/gpt";
-import { getAuthSession } from "@/lib/next-auth";
+// import { getAuthSession } from "@/lib/next-auth";
 
 export const POST = async (req: Request) => {
     try {

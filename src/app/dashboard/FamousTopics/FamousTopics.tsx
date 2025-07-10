@@ -10,7 +10,7 @@ type Props = {
 };
 
 const FamousTopics = ({ formattedTopics = defaultTopics }: Props) => {
-  const router = useRouter();
+  // const router = useRouter();
   
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#2F2B2B] hover:shadow-lg hover:shadow-[#ff7f01]/10 transition-all duration-300 hover:border-[#ff7f01]/50 hover:scale-[1.02] group overflow-hidden h-full w-full">
