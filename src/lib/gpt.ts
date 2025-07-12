@@ -6,6 +6,9 @@ interface OutputFormat {
   [key: string]: string | string[] | OutputFormat;
 }
 
+// Use a more specific type than 'any'
+type OutputElement = Record<string, unknown>;
+
 export async function gemini_output(
   system_prompt: string,
   user_prompt: string | string[],
@@ -107,7 +110,7 @@ export async function gemini_output(
         }
 
         // check for each element in the output_list, the format is correctly adhered to
-        for (let index = 0; index < (output as any[]).length; index++) {
+        for (let index = 0; index < (output as OutputElement[]).length; index++) {
           for (const key in output_format) {
             // unable to ensure accuracy of dynamic output header, so skip it
             if (/<.*?>/.test(key)) {
@@ -115,35 +118,41 @@ export async function gemini_output(
             }
 
             // if output field missing, raise an error
-            if (!(key in (output as any[])[index])) {
+            if (!(key in (output as OutputElement[])[index])) {
               throw new Error(`${key} not in json output`);
             }
 
             // check that one of the choices given for the list of words is an unknown
             if (Array.isArray(output_format[key])) {
               const choices = output_format[key] as string[];
+              const field = (output as OutputElement[])[index][key];
+
               // ensure output is not a list
-              if (Array.isArray((output as any[])[index][key])) {
-                (output as any[])[index][key] = (output as any[])[index][key][0];
+              if (Array.isArray(field)) {
+                (output as OutputElement[])[index][key] = field[0];
               }
               // output the default category (if any) if Gemini is unable to identify the category
-              if (!choices.includes((output as any[])[index][key]) && default_category) {
-                (output as any[])[index][key] = default_category;
+              if (
+                typeof (output as OutputElement[])[index][key] === "string" &&
+                !choices.includes((output as OutputElement[])[index][key] as string) &&
+                default_category
+              ) {
+                (output as OutputElement[])[index][key] = default_category;
               }
               // if the output is a description format, get only the label
-              if ((output as any[])[index][key].includes(":")) {
-                (output as any[])[index][key] = (output as any[])[index][key].split(":")[0];
+              if (
+                typeof (output as OutputElement[])[index][key] === "string" &&
+                ((output as OutputElement[])[index][key] as string).includes(":")
+              ) {
+                (output as OutputElement[])[index][key] = ((output as OutputElement[])[index][key] as string).split(":")[0];
               }
             }
           }
 
           // if we just want the values for the outputs
           if (output_value_only) {
-            (output as any[])[index] = Object.values((output as any[])[index]);
-            // just output without the list if there is only one element
-            if ((output as any[])[index].length === 1) {
-              (output as any[])[index] = (output as any[])[index][0];
-            }
+            const values = Object.values((output as OutputElement[])[index]);
+            (output as OutputElement[])[index] = values.length === 1 ? values[0] as OutputElement : (values as unknown as OutputElement);
           }
         }
 
