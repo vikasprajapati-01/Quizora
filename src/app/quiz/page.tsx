@@ -7,16 +7,21 @@ export const metadata = {
     title: "Quiz - Quizora",
 }
 
-const QuizPage = async ({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }) => {
+type Props = {
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+const QuizPage = async ({ searchParams }: Props) => {
+    const params = await searchParams;
     const session = await getAuthSession();
-    if(!session?.user) {
+    if (!session?.user) {
         return redirect("/");
     }
-    
-    // Convert topic to string and pass it as topicParam prop to match CreateQuiz's expected props
-    const topic = typeof searchParams.topic === 'string' ? searchParams.topic : '';
-    
-    return <CreateQuiz topicParam={topic} />;
-}
 
-export default QuizPage
+    // Convert topic to string and pass it as topicParam prop to match CreateQuiz's expected props
+    const topic = typeof params.topic === "string" ? params.topic : "";
+
+    return <CreateQuiz topicParam={topic} />;
+};
+
+export default QuizPage;
