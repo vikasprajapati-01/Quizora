@@ -3,23 +3,14 @@ import { ZodError } from "zod";
 
 import { quizCreationSchema } from "@/schemas/form/quizVallidate";
 import { gemini_output } from "@/lib/gpt";
-// import { getAuthSession } from "@/lib/next-auth";
 
 export const POST = async (req: Request) => {
     try {
-        // const session = await getAuthSession();
-        // if (!session?.user) {
-        // return NextResponse.json(
-        //         { error: "You must be logged in to create a game." },
-        //         {
-        //         status: 401,
-        //         }
-        //     );
-        // }
 
         const body = await req.json();
         const {topic, amount, type} = quizCreationSchema.parse(body);
 
+        // FIX: Use unknown instead of any
         let questions: unknown;
 
         if (type === "open_ended") {

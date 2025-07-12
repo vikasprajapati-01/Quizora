@@ -4,9 +4,9 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { MdHistory, MdArrowForward } from "react-icons/md";
 
-type Props = {};
+type Props = object;
 
-const HistoryCard = (props: Props) => {
+const HistoryCard = () => {
   const router = useRouter();
   
   return (
