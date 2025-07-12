@@ -4,8 +4,6 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { MdHistory, MdArrowForward } from "react-icons/md";
 
-type Props = object;
-
 const HistoryCard = () => {
   const router = useRouter();
   

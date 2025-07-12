@@ -10,12 +10,12 @@ import TimeCard from "@/components/statistics/TimeCard";
 import QuestionsCard from "@/components/statistics/QuestionsCard";
 
 type Props = {
-  params: {
-    gameId: string;
-  };
+  params: Promise<{ gameId: string }>;
 };
 
-const Statistics = async ({ params: { gameId } }: Props) => {
+const Statistics = async ({ params }: Props) => {
+  const { gameId } = await params;
+
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");
@@ -74,7 +74,6 @@ const Statistics = async ({ params: { gameId } }: Props) => {
       <div className="mt-8 bg-[#0a0a0a] rounded-lg border border-gray-700 p-6">
         <h3 className="text-xl font-bold mb-4 text-[#ff7f01]">Questions Summary</h3>
         <QuestionsCard questions={game.questions} />
-        {/* <div className="text-gray-400">Questions data will appear here</div> */}
       </div>
     </div>
   );

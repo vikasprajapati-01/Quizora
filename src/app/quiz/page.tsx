@@ -1,14 +1,7 @@
-
 import React from "react";
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/next-auth";
 import CreateQuiz from "./CreateQuiz";
-
-type Props = {
-  searchParams: {
-    topic?: string;
-  };
-}
 
 export const metadata = {
     title: "Quiz - Quizora",

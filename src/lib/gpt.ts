@@ -73,7 +73,7 @@ export async function gemini_output(
         { text: finalPrompt },
         { text: Array.isArray(user_prompt) ? user_prompt.join("\n") : user_prompt.toString() }
       ]);
-      const response = await result.response;
+      const response = result.response;
       let res: string = response.text().trim();
       
       // Extract JSON if it's in a code block
@@ -96,7 +96,7 @@ export async function gemini_output(
 
       // try-catch block to ensure output format is adhered to
       try {
-        let output: any = JSON.parse(res);
+        let output = JSON.parse(res) as unknown;
 
         if (list_input) {
           if (!Array.isArray(output)) {
@@ -107,7 +107,7 @@ export async function gemini_output(
         }
 
         // check for each element in the output_list, the format is correctly adhered to
-        for (let index = 0; index < output.length; index++) {
+        for (let index = 0; index < (output as any[]).length; index++) {
           for (const key in output_format) {
             // unable to ensure accuracy of dynamic output header, so skip it
             if (/<.*?>/.test(key)) {
@@ -115,7 +115,7 @@ export async function gemini_output(
             }
 
             // if output field missing, raise an error
-            if (!(key in output[index])) {
+            if (!(key in (output as any[])[index])) {
               throw new Error(`${key} not in json output`);
             }
 
@@ -123,31 +123,33 @@ export async function gemini_output(
             if (Array.isArray(output_format[key])) {
               const choices = output_format[key] as string[];
               // ensure output is not a list
-              if (Array.isArray(output[index][key])) {
-                output[index][key] = output[index][key][0];
+              if (Array.isArray((output as any[])[index][key])) {
+                (output as any[])[index][key] = (output as any[])[index][key][0];
               }
               // output the default category (if any) if Gemini is unable to identify the category
-              if (!choices.includes(output[index][key]) && default_category) {
-                output[index][key] = default_category;
+              if (!choices.includes((output as any[])[index][key]) && default_category) {
+                (output as any[])[index][key] = default_category;
               }
               // if the output is a description format, get only the label
-              if (output[index][key].includes(":")) {
-                output[index][key] = output[index][key].split(":")[0];
+              if ((output as any[])[index][key].includes(":")) {
+                (output as any[])[index][key] = (output as any[])[index][key].split(":")[0];
               }
             }
           }
 
           // if we just want the values for the outputs
           if (output_value_only) {
-            output[index] = Object.values(output[index]);
+            (output as any[])[index] = Object.values((output as any[])[index]);
             // just output without the list if there is only one element
-            if (output[index].length === 1) {
-              output[index] = output[index][0];
+            if ((output as any[])[index].length === 1) {
+              (output as any[])[index] = (output as any[])[index][0];
             }
           }
         }
 
-        return list_input ? output : output[0];
+        return list_input
+          ? (output as { question: string; answer: string }[])
+          : [output as { question: string; answer: string }];
       } catch (e) {
         error_msg = `\n\nResult: ${res}\n\nError message: ${e}`;
         console.log("An exception occurred:", e);

@@ -6,8 +6,6 @@ import HistoryComp from "@/components/History/HistoryComp";
 import { prisma } from "@/lib/database";
 import { FaHistory, FaArrowRight } from "react-icons/fa";
 
-type Props = object;
-
 const RecentActivityCard = async () => {
   const session = await getAuthSession();
   if (!session?.user) {

@@ -5,6 +5,7 @@ import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import Image from "next/image";
 
 type Props = {
   user: Pick<User, 'name' | 'email' | 'image'>;
@@ -37,10 +38,12 @@ const NavbarProfile = ({ user }: Props) => {
       >
         {user.image ? (
           <div className="relative h-full w-full overflow-hidden rounded-full">
-            <img
+            <Image
               src={user.image}
               alt={user.name ?? "User"}
               referrerPolicy="no-referrer"
+              width={48}
+              height={48}
               className="h-full w-full object-cover ring-1 ring-[#ff7f01]/30"
             />
           </div>
@@ -58,9 +61,11 @@ const NavbarProfile = ({ user }: Props) => {
           <div className="p-3 sm:p-5 border-b border-[#ff7f01]/20 bg-gradient-to-br from-black to-black/80">
             <div className="flex items-center gap-3">
               {user.image ? (
-                <img
+                <Image
                   src={user.image}
                   alt={user.name ?? "User"}
+                  width={48}
+                  height={48}
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-[#ff7f01]/30"
                 />
               ) : (
