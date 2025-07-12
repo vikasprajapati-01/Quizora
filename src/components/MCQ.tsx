@@ -311,7 +311,7 @@ const MCQ: React.FC<Props> = ({ game }) => {
           <div className="space-y-4 mb-6">
             {options.map((option, index) => (
               <button
-                key={option}
+                key={index}
                 className={`w-full text-left px-5 py-4 rounded-md border transition
                   ${selectedChoice === index ? 
                     "border-[#ff7f01] bg-[#ff7f01]/10 text-white" : 

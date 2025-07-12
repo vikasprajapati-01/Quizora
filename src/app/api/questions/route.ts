@@ -20,7 +20,7 @@ export const POST = async (req: Request) => {
         const body = await req.json();
         const {topic, amount, type} = quizCreationSchema.parse(body);
 
-        let questions: any;
+        let questions: unknown;
 
         if (type === "open_ended") {
             questions = await gemini_output(

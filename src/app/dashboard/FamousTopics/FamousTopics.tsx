@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { FaFire } from "react-icons/fa";
 import WordCloud from "./WordCloud";
 
