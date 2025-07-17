@@ -140,7 +140,7 @@ const CreateQuiz = ({ topicParam }: Props) => {
   }
 
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full max-w-md">
+    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full max-w-md mt-8">
       <div className="bg-[#171717] shadow-lg rounded-lg p-6 w-full border border-gray-800">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-white">Quiz Creation</h2>
