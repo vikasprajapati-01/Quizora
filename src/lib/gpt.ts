@@ -161,12 +161,12 @@ export async function gemini_output(
           : [output as { question: string; answer: string }];
       } catch (e) {
         error_msg = `\n\nResult: ${res}\n\nError message: ${e}`;
-        console.log("An exception occurred:", e);
-        console.log("Current invalid json format:", res);
+        // console.log("An exception occurred:", e);
+        // console.log("Current invalid json format:", res);
       }
     } catch (e) {
       error_msg = `\n\nError message: ${e}`;
-      console.log("API call exception:", e);
+      // console.log("API call exception:", e);
     }
   }
 

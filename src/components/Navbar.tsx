@@ -8,7 +8,7 @@ import NavbarProfile from "./NavbarProfile";
 
 const Navbar = async () => {
   const session = await getAuthSession();
-  console.log("Session in Navbar:", session);
+  // console.log("Session in Navbar:", session);
 
   return (
     <div className="fixed inset-x-0 top-0 z-[10] bg-white dark:bg-black h-fit border-b border-[#ff7f01] py-2 sm:py-3 shadow-md">

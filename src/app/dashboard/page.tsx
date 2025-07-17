@@ -19,17 +19,17 @@ const Dashboard = async () => {
     }
 
   return (
-    <main className="p-8 mx-auto max-w-7xl">
+    <main className="p-4 sm:p-8 mx-auto max-w-7xl">
         <div className="flex items-center">
-            <h2 className="mr-2 text-3xl font-bold tracking-tight">Dashborad</h2>
+            <h2 className="mr-2 text-2xl sm:text-3xl font-bold tracking-tight">Dashborad</h2>
         </div>
 
-        <div className="grid gap-4 mt-4 md:grid-cols-2">
+        <div className="grid gap-4 mt-4 grid-cols-1 md:grid-cols-2">
             <QuizCard />
             <HistoryCard />
         </div>
 
-        <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-4 mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
             <FamousTopics />
             <RecentActivites />
         </div>

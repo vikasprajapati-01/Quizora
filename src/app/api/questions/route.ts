@@ -44,7 +44,7 @@ export const POST = async (req: Request) => {
         );
     }
     catch (error) {
-        console.error("Error in POST /api/questions:", error);
+        // console.error("Error in POST /api/questions:", error);
         if(error instanceof ZodError) {
             return NextResponse.json( { error: error.issues } , { status: 400 });
         }

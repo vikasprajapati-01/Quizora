@@ -32,22 +32,22 @@ const RecentActivityCard = async () => {
         </p>
       </div>
       
-      <div className="px-6 pb-3">
-        <div className="max-h-[480px] overflow-y-auto pr-2">
-          <HistoryComp limit={10} userId={session.user.id} />
+      <div className="px-4 sm:px-6 pb-3">
+          <div className="max-h-[300px] sm:max-h-[480px] overflow-y-auto pr-1 sm:pr-2">
+            <HistoryComp limit={10} userId={session.user.id} />
+          </div>
+        </div>
+
+        <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 sm:pt-3 flex justify-center">
+          <Link 
+            href="/history" 
+            className="flex items-center justify-center w-full py-2 sm:py-3 text-white bg-[#242424] hover:bg-[#2f2f2f] rounded-md transition-colors text-base sm:text-lg font-medium border border-gray-700"
+          >
+            Show More
+            <FaArrowRight className="ml-2 text-[#ff7f01]" />
+          </Link>
         </div>
       </div>
-      
-      <div className="px-6 pb-6 pt-3 flex justify-center">
-        <Link 
-          href="/history" 
-          className="flex items-center justify-center w-full py-3 text-white bg-[#242424] hover:bg-[#2f2f2f] rounded-md transition-colors text-lg font-medium border border-gray-700"
-        >
-          Show More
-          <FaArrowRight className="ml-2 text-[#ff7f01]" />
-        </Link>
-      </div>
-    </div>
   );
 };
 

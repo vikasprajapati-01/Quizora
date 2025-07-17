@@ -18,8 +18,8 @@ const WordCloud = ({ formattedTopics }: Props) => {
   const minValue = Math.min(...formattedTopics.map(topic => topic.value)) || 1;
   
   const getFontSize = (value: number) => {
-    const minFont = 14;
-    const maxFont = 32;
+    const minFont = window.innerWidth < 640 ? 12 : 14;
+    const maxFont = window.innerWidth < 640 ? 24 : 32;
     
     if (maxValue === minValue) return minFont + (maxFont - minFont) / 2;
     
@@ -33,7 +33,7 @@ const WordCloud = ({ formattedTopics }: Props) => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center gap-2 md:gap-3 py-4">
+    <div className="flex flex-wrap justify-center gap-1 sm:gap-2 md:gap-3 py-2 sm:py-4">
       {sortedTopics.map((topic, index) => (
         <div
           key={index}
@@ -41,13 +41,13 @@ const WordCloud = ({ formattedTopics }: Props) => {
             fontSize: `${getFontSize(topic.value)}px`,
             opacity: getOpacity(topic.value),
           }}
-          className="px-3 py-1.5 rounded-full cursor-pointer text-gray-800 dark:text-white hover:bg-[#ff7f01]/10 dark:hover:bg-[#ff7f01]/20 hover:text-[#ff7f01] transition-all duration-200"
+          className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full cursor-pointer text-gray-800 dark:text-white hover:bg-[#ff7f01]/10 dark:hover:bg-[#ff7f01]/20 hover:text-[#ff7f01] transition-all duration-200"
           onClick={() => router.push(`/quiz?topic=${encodeURIComponent(topic.text)}`)}
         >
           {topic.text}
         </div>
       ))}
-    </div>
+  </div>
   );
 };
 

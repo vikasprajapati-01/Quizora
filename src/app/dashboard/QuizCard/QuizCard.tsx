@@ -14,13 +14,13 @@ const QuizCard = () => {
       //   router.push("/quiz");
       // }}
     >
-      <div className="p-5 sm:p-6 md:p-7">
-        <div className="flex flex-row items-center justify-between pb-3 sm:pb-4">
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-800 dark:text-white group-hover:text-[#ff7f01] transition-colors duration-300">
+      <div className="p-4 sm:p-5 md:p-7">
+        <div className="flex flex-row items-center justify-between pb-2 sm:pb-3">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-gray-800 dark:text-white group-hover:text-[#ff7f01] transition-colors duration-300">
             Quiz me!
           </h3>
-          <div className="p-2 sm:p-2.5 rounded-full bg-orange-50 dark:bg-orange-900/20 group-hover:bg-[#ff7f01]/20 group-hover:scale-110 transition-all duration-300">
-            <BiBrain size={24} className="text-[#ff7f01] transition-transform group-hover:rotate-12 duration-300" />
+          <div className="p-1.5 sm:p-2 sm:p-2.5 rounded-full bg-orange-50 dark:bg-orange-900/20 group-hover:bg-[#ff7f01]/20 group-hover:scale-110 transition-all duration-300">
+            <BiBrain size={20} className="text-[#ff7f01] transition-transform group-hover:rotate-12 duration-300" />
           </div>
         </div>
         <div className="pt-1">

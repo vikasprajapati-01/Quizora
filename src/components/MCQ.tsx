@@ -28,13 +28,13 @@ function Toast({ open, setOpen, type, message, title }: {
   if (!open) return null;
   
   return (
-    <div className={`mb-4 p-3 rounded-md ${
+    <div className={`mb-4 p-2 sm:p-3 rounded-md ${
       type === 'error' 
         ? 'bg-red-900 border border-red-700 text-red-100' 
         : 'bg-green-900 border border-green-700 text-green-100'
     }`}>
-      <div className="font-bold">{title}</div>
-      <div>{message}</div>
+      <div className="font-bold text-sm sm:text-base">{title}</div>
+      <div className="text-sm">{message}</div>
     </div>
   );
 }
@@ -43,9 +43,9 @@ function Toast({ open, setOpen, type, message, title }: {
 function LoadingOverlay() {
   return (
     <div className="absolute inset-0 bg-black/40 flex items-center justify-center rounded-lg z-10 backdrop-blur-sm">
-      <div className="bg-[#171717] p-4 rounded-lg flex items-center space-x-3 border border-[#2a2a2a]">
-        <FaSpinner className="w-5 h-5 text-[#ff7f01] animate-spin" />
-        <span className="text-white font-medium">Checking answer...</span>
+      <div className="bg-[#171717] p-3 sm:p-4 rounded-lg flex items-center space-x-2 sm:space-x-3 border border-[#2a2a2a]">
+        <FaSpinner className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff7f01] animate-spin" />
+        <span className="text-white text-sm sm:text-base font-medium">Checking answer...</span>
       </div>
     </div>
   );
@@ -205,42 +205,42 @@ const MCQ: React.FC<Props> = ({ game }) => {
   // If quiz has ended
   if (hasEnded) {
     return (
-      <div className="pt-16 min-h-screen flex items-center justify-center px-4">
+      <div className="pt-8 sm:pt-16 min-h-screen flex items-center justify-center px-4">
         <div className="w-full max-w-md">
-          <div className="bg-[#171717] shadow-lg rounded-lg p-8 w-full border border-gray-800">
+          <div className="bg-[#171717] shadow-lg rounded-lg p-6 sm:p-8 w-full border border-gray-800">
             <div className="flex flex-col items-center">
-              <FaTrophy className="text-[#ff7f01] w-16 h-16 mb-4" />
-              <h2 className="text-2xl font-bold text-white mb-2">Quiz Completed!</h2>
-              <div className="px-4 py-2 mt-2 font-semibold text-white bg-[#ff7f01] rounded-md whitespace-nowrap mb-6">
+              <FaTrophy className="text-[#ff7f01] w-12 h-12 sm:w-16 sm:h-16 mb-4" />
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Quiz Completed!</h2>
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 mt-2 font-semibold text-white bg-[#ff7f01] rounded-md whitespace-nowrap mb-6">
                 Time: {formatTimeDelta(elapsedSeconds)}
               </div>
             </div>
             
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="text-center bg-[#0a0a0a] p-3 rounded-lg border border-gray-800">
-                <div className="text-2xl font-bold text-[#ff7f01]">{stats.correct_answers}</div>
-                <div className="text-sm text-gray-300">Correct</div>
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
+              <div className="text-center bg-[#0a0a0a] p-2 sm:p-3 rounded-lg border border-gray-800">
+                <div className="text-xl sm:text-2xl font-bold text-[#ff7f01]">{stats.correct_answers}</div>
+                <div className="text-xs sm:text-sm text-gray-300">Correct</div>
               </div>
-              <div className="text-center bg-[#0a0a0a] p-3 rounded-lg border border-gray-800">
-                <div className="text-2xl font-bold text-red-500">{stats.wrong_answers}</div>
-                <div className="text-sm text-gray-300">Wrong</div>
+              <div className="text-center bg-[#0a0a0a] p-2 sm:p-3 rounded-lg border border-gray-800">
+                <div className="text-xl sm:text-2xl font-bold text-red-500">{stats.wrong_answers}</div>
+                <div className="text-xs sm:text-sm text-gray-300">Wrong</div>
               </div>
-              <div className="text-center bg-[#0a0a0a] p-3 rounded-lg border border-gray-800">
-                <div className="text-2xl font-bold text-blue-400">{game.questions.length}</div>
-                <div className="text-sm text-gray-300">Total</div>
+              <div className="text-center bg-[#0a0a0a] p-2 sm:p-3 rounded-lg border border-gray-800">
+                <div className="text-xl sm:text-2xl font-bold text-blue-400">{game.questions.length}</div>
+                <div className="text-xs sm:text-sm text-gray-300">Total</div>
               </div>
             </div>
             
             <Link
               href={`/statistics/${game.id}`}
-              className="flex items-center justify-center px-6 py-3 bg-[#ff7f01] text-white font-semibold rounded-md hover:bg-[#e67200] w-full transition-colors"
+              className="flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-[#ff7f01] text-white font-semibold rounded-md hover:bg-[#e67200] w-full transition-colors text-sm sm:text-base"
             >
-              View Statistics <FaChartBar className="w-5 h-5 ml-2" />
+              View Statistics <FaChartBar className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
             </Link>
 
             <Link
               href={`/quiz`}
-              className="flex items-center justify-center mt-2 px-6 py-3 bg-[#ff7f01] text-white font-semibold rounded-md hover:bg-[#e67200] w-full transition-colors"
+              className="flex items-center justify-center mt-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#ff7f01] text-white font-semibold rounded-md hover:bg-[#e67200] w-full transition-colors text-sm sm:text-base"
             >
               Back to quiz
             </Link>
@@ -251,7 +251,7 @@ const MCQ: React.FC<Props> = ({ game }) => {
   }
 
   return (
-    <div className="pt-4 pb-16 min-h-screen px-4 flex flex-col items-center">
+    <div className="pt-2 sm:pt-4 pb-10 sm:pb-16 min-h-screen px-3 sm:px-4 flex flex-col items-center">
       <div className="w-full max-w-4xl">
         {toast.show && (
           <Toast 
@@ -263,27 +263,27 @@ const MCQ: React.FC<Props> = ({ game }) => {
           />
         )}
         
-        <div className="bg-[#171717] shadow-lg rounded-lg p-6 w-full border border-gray-800 relative">
+        <div className="bg-[#171717] shadow-lg rounded-lg p-4 sm:p-6 w-full border border-gray-800 relative">
           {/* Loading overlay - centered */}
           {isChecking && <LoadingOverlay />}
           
           {/* Header with topic and stats */}
-          <div className="flex flex-row justify-between items-center mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-2 sm:gap-0">
             <div>
               <p className="mb-1">
-                <span className="text-gray-300">Topic:</span> &nbsp;
-                <span className="px-2 py-1 text-white rounded-lg bg-[#0a0a0a] border border-gray-700">
+                <span className="text-gray-300 text-sm sm:text-base">Topic:</span> &nbsp;
+                <span className="px-2 py-1 text-sm sm:text-base text-white rounded-lg bg-[#0a0a0a] border border-gray-700">
                   {game.topic}
                 </span>
               </p>
-              <div className="flex items-center text-gray-300">
+              <div className="flex items-center text-gray-300 text-sm sm:text-base">
                 <FaClock className="mr-2 text-[#ff7f01]" />
                 {formatTimeDelta(elapsedSeconds)}
               </div>
             </div>
             
-            <div className="flex flex-col items-end text-sm">
-              <div className="flex items-center">
+            <div className="flex flex-row sm:flex-col items-center sm:items-end text-xs sm:text-sm">
+              <div className="flex items-center mr-3 sm:mr-0">
                 <span className="text-[#ff7f01] font-bold">{stats.correct_answers}</span>
                 <span className="ml-1 text-gray-300">Correct</span>
               </div>
@@ -295,24 +295,24 @@ const MCQ: React.FC<Props> = ({ game }) => {
           </div>
           
           {/* Question card */}
-          <div className="mb-6 bg-[#0a0a0a] rounded-lg border border-gray-700 p-4">
+          <div className="mb-4 sm:mb-6 bg-[#0a0a0a] rounded-lg border border-gray-700 p-3 sm:p-4">
             <div className="flex items-start">
-              <div className="flex flex-col items-center mr-4 bg-[#171717] px-3 py-2 rounded-md border border-gray-700">
-                <span className="text-xl font-bold text-[#ff7f01]">{questionIndex + 1}</span>
-                <span className="text-xs text-gray-400">/ {game.questions.length}</span>
+              <div className="flex flex-col items-center mr-3 sm:mr-4 bg-[#171717] px-2 sm:px-3 py-1.5 sm:py-2 rounded-md border border-gray-700">
+                <span className="text-base sm:text-xl font-bold text-[#ff7f01]">{questionIndex + 1}</span>
+                <span className="text-[10px] sm:text-xs text-gray-400">/ {game.questions.length}</span>
               </div>
-              <div className="text-lg text-white">
+              <div className="text-base sm:text-lg text-white">
                 {currentQuestion?.question}
               </div>
             </div>
           </div>
           
           {/* Options */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
             {options.map((option, index) => (
               <button
                 key={index}
-                className={`w-full text-left px-5 py-4 rounded-md border transition
+                className={`w-full text-left px-4 sm:px-5 py-3 sm:py-4 rounded-md border transition text-sm sm:text-base
                   ${selectedChoice === index ? 
                     "border-[#ff7f01] bg-[#ff7f01]/10 text-white" : 
                     "border-gray-700 bg-[#0a0a0a] text-gray-200 hover:border-[#ff7f01]/70"
@@ -321,7 +321,7 @@ const MCQ: React.FC<Props> = ({ game }) => {
                 disabled={isChecking}
               >
                 <div className="flex items-center">
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-md mr-3 
+                  <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-md mr-2 sm:mr-3 text-sm sm:text-base
                     ${selectedChoice === index ? "bg-[#ff7f01] text-white" : "bg-[#171717] text-gray-300 border border-gray-700"}`}>
                     {index + 1}
                   </div>
@@ -333,23 +333,23 @@ const MCQ: React.FC<Props> = ({ game }) => {
           
           {/* Next button */}
           <button
-            className={`w-full py-3 px-4 rounded-md flex items-center justify-center font-medium
+            className={`w-full py-2.5 sm:py-3 px-4 rounded-md flex items-center justify-center font-medium text-sm sm:text-base
               bg-[#ff7f01] hover:bg-[#e67200] text-white transition-colors
               ${isChecking ? "opacity-50 cursor-not-allowed" : ""}`}
             disabled={isChecking}
             onClick={handleNext}
           >
-            Next Question <FaChevronRight className="w-4 h-4 ml-2" />
+            Next Question <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
           </button>
           
           {/* Keyboard hint */}
-          <div className="mt-4 text-center text-sm text-gray-400">
+          <div className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-gray-400">
             Use keyboard: 1-{options.length} to select, Enter to submit
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default MCQ;

@@ -20,39 +20,39 @@ const HistoryComp = async ({ limit, userId }: Props) => {
   });
   
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {games.map((game) => {
         return (
-          <div className="flex items-center justify-between bg-[#171717] rounded-lg p-4 border border-gray-800" key={game.id}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[#171717] rounded-lg p-3 sm:p-4 border border-gray-800" key={game.id}>
             <div className="flex items-center">
               {game.gameType === "mcq" ? (
-                <div className="bg-[#242424] p-3 rounded-lg">
-                  <FaClipboardCheck className="text-[#ff7f01] text-lg" />
+                <div className="bg-[#242424] p-2 sm:p-3 rounded-lg">
+                  <FaClipboardCheck className="text-[#ff7f01] text-base sm:text-lg" />
                 </div>
               ) : (
-                <div className="bg-[#242424] p-3 rounded-lg">
-                  <FaPencilAlt className="text-[#ff7f01] text-lg" />
+                <div className="bg-[#242424] p-2 sm:p-3 rounded-lg">
+                  <FaPencilAlt className="text-[#ff7f01] text-base sm:text-lg" />
                 </div>
               )}
-              <div className="ml-4 space-y-2">
+              <div className="ml-3 sm:ml-4 space-y-1 sm:space-y-2">
                 <Link
-                  className="text-lg font-medium leading-none hover:underline text-white"
+                  className="text-base sm:text-lg font-medium leading-none hover:underline text-white"
                   href={`/statistics/${game.id}`}
                 >
                   {game.topic}
                 </Link>
-                <p className="flex items-center px-3 py-1.5 text-sm text-white rounded-md w-fit bg-[#242424] border border-gray-700">
-                  <FaClock className="w-4 h-4 mr-2 text-[#ff7f01]" />
+                <p className="flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-white rounded-md w-fit bg-[#242424] border border-gray-700">
+                  <FaClock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-[#ff7f01]" />
                   {new Date(game.timeEnded ?? 0).toLocaleDateString()}
                 </p>
-                <p className="text-base text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   {game.gameType === "mcq" ? "Multiple Choice" : "Open-Ended"}
                 </p>
               </div>
             </div>
             <Link 
               href={`/statistics/${game.id}`}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#ff7f01] hover:bg-[#e67200] rounded transition-colors"
+              className="mt-3 sm:mt-0 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white bg-[#ff7f01] hover:bg-[#e67200] rounded transition-colors self-end sm:self-auto"
             >
               View Results
             </Link>
@@ -61,8 +61,8 @@ const HistoryComp = async ({ limit, userId }: Props) => {
       })}
       
       {games.length === 0 && (
-        <div className="text-center p-8 bg-[#171717] rounded-lg border border-gray-800">
-          <p className="text-lg text-gray-400">No quiz history found</p>
+        <div className="text-center p-4 sm:p-8 bg-[#171717] rounded-lg border border-gray-800">
+          <p className="text-base sm:text-lg text-gray-400">No quiz history found</p>
         </div>
       )}
     </div>
