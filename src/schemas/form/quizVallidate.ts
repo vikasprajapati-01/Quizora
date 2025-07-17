@@ -11,6 +11,7 @@ export const quizCreationSchema = z.object({
     }),
   type: z.enum(["mcq", "open_ended"]),
   amount: z.number().min(1).max(25),
+  difficulty: z.enum(["easy", "medium", "hard"]),
 });
 
 export const checkAnswerSchema = z.object({

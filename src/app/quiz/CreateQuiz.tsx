@@ -1,5 +1,6 @@
-
 "use client";
+
+import { FaRegCircle, FaCircle } from "react-icons/fa";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
@@ -40,7 +41,7 @@ const CreateQuiz = ({ topicParam }: Props) => {
   >({
     mutationFn: async ({ amount, topic, type }: Input) => {
       // Changed this endpoint to match the original component
-      const response = await axios.post("/api/game", { amount, topic, type });
+      const response = await axios.post("/api/game", { amount, topic, type, difficulty });  
       return response.data;
     },
   });
@@ -57,10 +58,12 @@ const CreateQuiz = ({ topicParam }: Props) => {
       topic: topicParam || "",
       type: "mcq",
       amount: 3,
+      difficulty: "medium",
     },
   });
 
   const quizType = watch("type");
+  const difficulty = watch("difficulty");
 
   const onSubmit = async (data: Input) => {
     setShowLoader(true);
@@ -200,6 +203,56 @@ const CreateQuiz = ({ topicParam }: Props) => {
             )}
             <p className="mt-1 text-sm text-gray-400">
               You can choose how many questions you would like to be quizzed on here.
+            </p>
+          </div>
+
+          {/* Difficulty selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-200 mb-1">
+              Difficulty
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                className={`flex items-center justify-center py-2 px-3 rounded-md ${
+                  difficulty === "easy" 
+                    ? "bg-green-700 text-white" 
+                    : "bg-gray-800 text-gray-300"
+                } transition-colors`}
+                onClick={() => setValue("difficulty", "easy")}
+              >
+                {difficulty === "easy" ? <FaCircle className="w-4 h-4 mr-2" /> : <FaRegCircle className="w-4 h-4 mr-2" />}
+                <span>Easy</span>
+              </button>
+              
+              <button
+                type="button"
+                className={`flex items-center justify-center py-2 px-3 rounded-md ${
+                  difficulty === "medium" 
+                    ? "bg-[#ff7f01] text-white" 
+                    : "bg-gray-800 text-gray-300"
+                } transition-colors`}
+                onClick={() => setValue("difficulty", "medium")}
+              >
+                {difficulty === "medium" ? <FaCircle className="w-4 h-4 mr-2" /> : <FaRegCircle className="w-4 h-4 mr-2" />}
+                <span>Medium</span>
+              </button>
+              
+              <button
+                type="button"
+                className={`flex items-center justify-center py-2 px-3 rounded-md ${
+                  difficulty === "hard" 
+                    ? "bg-red-700 text-white" 
+                    : "bg-gray-800 text-gray-300"
+                } transition-colors`}
+                onClick={() => setValue("difficulty", "hard")}
+              >
+                {difficulty === "hard" ? <FaCircle className="w-4 h-4 mr-2" /> : <FaRegCircle className="w-4 h-4 mr-2" />}
+                <span>Hard</span>
+              </button>
+            </div>
+            <p className="mt-1 text-sm text-gray-400">
+              Select the difficulty level for your quiz.
             </p>
           </div>
 

@@ -59,6 +59,7 @@ model Game {
   timeStarted DateTime
   topic       String
   timeEnded   DateTime?
+  difficulty  String     @default("medium")
   gameType    GameType
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   questions   Question[]

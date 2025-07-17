@@ -19,7 +19,7 @@ export const POST = async (req: Request) => {
         }
 
         const body = await req.json();
-        const { topic, type, amount } = quizCreationSchema.parse(body);
+        const { topic, type, amount, difficulty } = quizCreationSchema.parse(body);
 
         const game = await prisma.game.create({
             data: {
@@ -27,6 +27,7 @@ export const POST = async (req: Request) => {
                 timeStarted: new Date(),
                 userId: session.user.id,
                 topic,
+                difficulty,
             },
         });
 
@@ -49,6 +50,7 @@ export const POST = async (req: Request) => {
                 amount,
                 topic,
                 type,
+                difficulty,
             }
         );
 
