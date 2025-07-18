@@ -38,11 +38,11 @@ const FamousTopics = ({ formattedTopics = defaultTopics }: Props) => {
 const defaultTopics = [
   { text: "JavaScript", value: 100 },
   { text: "Python", value: 90 },
-  { text: "React", value: 85 },
+  { text: "Physics", value: 85 },
   { text: "TypeScript", value: 80 },
   { text: "Machine Learning", value: 75 },
   { text: "Data Science", value: 70 },
-  { text: "Node.js", value: 65 },
+  { text: "Maths", value: 65 },
   { text: "Web Development", value: 60 },
   { text: "Artificial Intelligence", value: 55 },
   { text: "Cybersecurity", value: 50 }
