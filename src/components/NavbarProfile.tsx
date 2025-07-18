@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { FaHome, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaSignOutAlt } from "react-icons/fa"; // FaUser, FaCog,
 import Image from "next/image";
 
 type Props = {
