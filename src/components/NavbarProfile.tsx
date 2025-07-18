@@ -89,7 +89,7 @@ const NavbarProfile = ({ user }: Props) => {
               <FaHome className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-[#ff7f01]" />
               Dashboard
             </Link>
-            
+{/*             
             <Link href="/profile"
               className="w-full text-left px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-300 hover:bg-[#ff7f01]/10 hover:text-white rounded-lg flex items-center transition-all duration-200 my-1 hover:translate-x-1"
               onClick={() => setOpen(false)}
@@ -104,7 +104,7 @@ const NavbarProfile = ({ user }: Props) => {
             >
               <FaCog className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-[#ff7f01]" />
               Settings
-            </Link>
+            </Link> */}
           </div>
           
           <div className="border-t border-[#ff7f01]/20 mt-1" />
