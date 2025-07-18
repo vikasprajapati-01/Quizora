@@ -48,21 +48,21 @@ const Statistics = async ({ params }: Props) => {
   accuracy = Math.round(accuracy * 100) / 100;
 
   return (
-    <div className="min-h-screen p-4 sm:p-8 mx-auto max-w-7xl bg-[#171717] text-white">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4 sm:gap-0">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white">Statistics</h2>
+    <div className="min-h-screen p-3 sm:p-5 md:p-8 mx-auto max-w-7xl bg-[#171717] text-white">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 md:mb-8 gap-3 sm:gap-0">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Statistics</h2>
         <div className="flex items-center">
           <Link
             href="/dashboard"
-            className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded bg-[#ff7f01] hover:bg-[#e67200] text-white font-medium transition-colors text-sm sm:text-base"
+            className="inline-flex items-center px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded bg-[#ff7f01] hover:bg-[#e67200] text-white font-medium transition-colors text-xs sm:text-sm md:text-base"
           >
-            <FaThLarge className="mr-1.5 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4" />
+            <FaThLarge className="mr-1 sm:mr-1.5 md:mr-2 w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" />
             Back to Dashboard
           </Link>
         </div>
       </div>
 
-      <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <ResultCard accuracy={accuracy} />
         <AccuracyCard accuracy={accuracy} />
         <TimeCard
@@ -71,8 +71,8 @@ const Statistics = async ({ params }: Props) => {
         />
       </div>
       
-      <div className="mt-6 sm:mt-8 bg-[#0a0a0a] rounded-lg border border-gray-700 p-4 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[#ff7f01]">Questions Summary</h3>
+      <div className="mt-4 sm:mt-6 md:mt-8 bg-[#0a0a0a] rounded-lg border border-gray-700 p-3 sm:p-4 md:p-6">
+        <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-[#ff7f01]">Questions Summary</h3>
         <QuestionsCard questions={game.questions} />
       </div>
     </div>

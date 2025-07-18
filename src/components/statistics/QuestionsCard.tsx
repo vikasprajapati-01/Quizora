@@ -9,44 +9,44 @@ type Props = {
 
 const QuestionsCard = ({ questions }: Props) => {
   return (
-    <div className="mt-4 sm:mt-6 bg-[#171717] shadow-lg rounded-lg border border-gray-800 overflow-hidden">
-      <div className="p-4 sm:p-6 pb-2 sm:pb-3">
-        <h3 className="text-xl sm:text-2xl font-bold text-white">Questions</h3>
+    <div className="mt-2 sm:mt-4 bg-[#171717] shadow-lg rounded-lg border border-gray-800 overflow-hidden">
+      <div className="p-3 sm:p-4 md:p-6 pb-1 sm:pb-2 md:pb-3">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Questions</h3>
       </div>
 
       {/* Mobile view (stacked cards) for very small screens */}
-      <div className="block sm:hidden px-3 pb-4">
+      <div className="block sm:hidden px-2 pb-3">
         {questions.map(
           ({ answer, question, userAnswer, percentageCorrect, isCorrect, questionType }, index) => (
-            <div key={index} className="mb-4 bg-[#0a0a0a] rounded-lg border border-gray-800 p-3">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white font-semibold bg-[#171717] px-2 py-1 rounded text-sm">Q{index + 1}</span>
+            <div key={index} className="mb-3 bg-[#0a0a0a] rounded-lg border border-gray-800 p-2.5">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-white font-semibold bg-[#171717] px-1.5 py-0.5 rounded text-xs">Q{index + 1}</span>
                 {questionType === "open_ended" && (
                   <div className="flex items-center">
-                    <span className="text-[#ff7f01] font-medium text-sm">{percentageCorrect}%</span>
+                    <span className="text-[#ff7f01] font-medium text-xs">{percentageCorrect}%</span>
                   </div>
                 )}
                 {questionType === "mcq" && (
                   <div>
                     {isCorrect ? (
-                      <FaCheckCircle className="text-green-500 w-5 h-5" />
+                      <FaCheckCircle className="text-green-500 w-4 h-4" />
                     ) : (
-                      <FaTimesCircle className="text-red-500 w-5 h-5" />
+                      <FaTimesCircle className="text-red-500 w-4 h-4" />
                     )}
                   </div>
                 )}
               </div>
               
-              <div className="text-sm text-white mb-2">{question}</div>
+              <div className="text-xs leading-tight text-white mb-1.5 break-words">{question}</div>
               
-              <div className="mb-2">
+              <div className="mb-1.5">
                 <span className="text-xs text-gray-400">Answer: </span>
-                <span className="text-[#ff7f01] text-sm font-semibold">{answer}</span>
+                <span className="text-[#ff7f01] text-xs font-semibold break-words">{answer}</span>
               </div>
               
               <div>
                 <span className="text-xs text-gray-400">Your answer: </span>
-                <span className={`text-sm font-semibold ${
+                <span className={`text-xs font-semibold break-words ${
                   questionType === "mcq" 
                     ? (isCorrect ? "text-green-500" : "text-red-500") 
                     : "text-white"
@@ -56,9 +56,9 @@ const QuestionsCard = ({ questions }: Props) => {
               </div>
               
               {questionType === "open_ended" && (
-                <div className="mt-2 w-full bg-gray-700 rounded-full h-1.5">
+                <div className="mt-1.5 w-full bg-gray-700 rounded-full h-1">
                   <div 
-                    className="bg-[#ff7f01] h-1.5 rounded-full" 
+                    className="bg-[#ff7f01] h-1 rounded-full" 
                     style={{ width: `${percentageCorrect}%` }}
                   />
                 </div>
@@ -66,9 +66,6 @@ const QuestionsCard = ({ questions }: Props) => {
             </div>
           )
         )}
-        <div className="text-center text-xs text-gray-400 mt-2">
-          End of list
-        </div>
       </div>
 
       {/* Table view for larger screens */}
@@ -137,13 +134,6 @@ const QuestionsCard = ({ questions }: Props) => {
               )
             )}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={questions[0]?.questionType === "open_ended" ? 4 : 3} className="px-3 sm:px-6 py-3 sm:py-4 text-center text-sm sm:text-base text-gray-400">
-                End of list
-              </td>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
