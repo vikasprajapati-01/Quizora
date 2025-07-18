@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import "server-only";
 
 declare global {
-  // eslint-disable-next-line no-var
+  // Using var is required for global augmentation
   var cacPrisma: PrismaClient;
 }
 
