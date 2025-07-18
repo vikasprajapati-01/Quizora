@@ -33,8 +33,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       message: "Game ended",
     });
-  } catch (err) {
-    // console.log(err);
+  } catch (_error) {
     return NextResponse.json(
       {
         message: "Something went wrong",
